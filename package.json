@@ -22,7 +22,8 @@
   "homepage": "https://github.com/grant/hnplays2048",
   "dependencies": {
     "socket.io": "^0.9.16",
-    "express": "^3.5.0"
+    "express": "^3.5.0",
+    "twilio-api": "^0.3.3"
   },
   "engines": {
     "node": "0.10.x",

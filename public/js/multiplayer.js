@@ -22,7 +22,7 @@ socket.on('move', function (data) {
   var userId = data.userId;
   var moveElement = document.createElement('li');
 
-  var userIdString = 'Texter ' + userId;
+  var userIdString = 'Hacker ' + userId;
   if (userId === yourUserId) {
     userIdString = '<strong>' + userIdString + '</strong>';
   }
