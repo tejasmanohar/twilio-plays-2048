@@ -32,83 +32,42 @@ app.get('/api', function (req, res) {
 app.get('/receive', function(req, res) {
   var string = req.query['Body'];
   var dir;
-  if(string.indexOf('up') > -1) {
+  if(string.toLowerCase().indexOf('up') > -1) {
     game.move(0);
     dir = 0;
-  } else if (string.indexOf('right') > -1) {
+  } else if (string.toLowerCase().indexOf('right') > -1) {
     game.move(1);
     dir = 1;
-  } else if (string.indexOf('down') > -1) {
+  } else if (string.toLowerCase().indexOf('down') > -1) {
     game.move(2);
     dir = 2;
-  } else if (string.indexOf('left') > -1) {
+  } else if (string.toLowerCase().indexOf('left') > -1) {
     game.move(3);
     dir = 3;
-  } else {
-    
   }
-  var gameData = game.getGameData();
-  var data = {
-    direction: dir,
-    userId: "Democracy",
-    numUsers: io.sockets.clients().length,
-    gameData: gameData
-  };
-  io.sockets.emit('move', data);
-  res.sendStatus(200);
+  if (typeof dir !== 'undefined') {
+    var gameData = game.getGameData();
+    var data = {
+      direction: dir,
+      userId: "",
+      numUsers: io.sockets.clients().length,
+      gameData: gameData
+    };
+    io.sockets.emit('move', data);
+    res.sendStatus(200);     
+  }
 });
 
 app.get('*', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 // Setup game
-var democracy = false;
 var nextUserId = 0;
 var moveCount = 0;
 var game = require('./private/js/game');
 
 var voted = false;
-var votes = [0, 0, 0, 0]; // for democracy mode
 var ids = [];
-
-if (democracy) {
-  setInterval(function() {
-    var direction = 0;
-    for (var i = 1; i < 4; i++) {
-      if (votes[i] > votes[direction]) direction = i;
-    }
-    if (votes[direction] == 0) return;
-
-    // COPIED FROM BELOW
-    ++moveCount;
-    // update the game
-    game.move(direction);
-
-    // Send the move with the game state
-    var gameData = game.getGameData();
-    var data = {
-      direction: direction,
-      userId: "Democracy",
-      numUsers: io.sockets.clients().length,
-      gameData: gameData
-    };
-    io.sockets.emit('move', data);
-
-    // Reset the game if it is game over or won
-    if (gameData.over || gameData.won) {
-      game.restart(function () {
-        var data = game.getGameData();
-        data.highscores = game.getHighscores();
-        io.sockets.emit('restart', data);
-      });
-    }
-    // END COPIED
-
-    ids = [];
-    votes = [0, 0, 0, 0];
-    voted = false;
-  }, 1000);
-}
 
 io.sockets.on('connection', function (socket) {
   socket.userId = ++nextUserId;
@@ -133,28 +92,6 @@ io.sockets.on('connection', function (socket) {
     pastEvents.push(0);
   }
   socket.on('move', function (direction) {
-    if (democracy) {
-      // Keep track of events
-      pastEvents.push(new Date().getTime());
-      pastEvents.splice(0, pastEvents.length - numMovesPerSecond);
-
-      // Multiplayer
-      var spamming = pastEvents[pastEvents.length - 1] - pastEvents[0] < 1000;
-      if (!voted && !spamming) {
-        voted = true;
-        votes[direction]++;
-
-        // Send the move with the same old game state
-        var gameData = game.getGameData();
-        var data = {
-          direction: direction,
-          userId: socket.userId,
-          numUsers: io.sockets.clients().length,
-          gameData: gameData
-        };
-        io.sockets.emit('move', data);
-      }
-    } else {
       ++moveCount;
       // update the game
       game.move(direction);
@@ -176,7 +113,6 @@ io.sockets.on('connection', function (socket) {
           data.highscores = game.getHighscores();
           io.sockets.emit('restart', data);
         });
-      }
     }
   });
 
