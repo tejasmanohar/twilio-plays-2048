@@ -30,6 +30,7 @@ app.get('/api', function (req, res) {
 
 // Receive SMS
 app.get('/receive', function(req, res) {
+  console.log(req);
   var string = req.query['Body'];
   var dir;
   if(string.toLowerCase().indexOf('up') > -1) {
