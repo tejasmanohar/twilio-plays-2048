@@ -41,20 +41,21 @@ SMSInputManager.prototype.listen = function () {
     37: 3 // Left
   };
 
-  document.addEventListener("keydown", function (event) {
-    var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
-                    event.shiftKey;
-    var mapped    = map[event.which];
-
-    if (!modifiers) {
+ /* document.addEventListener("keydown", function (event) {
+  // Change stuff here to work with twilio
+//     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
+//                     event.shiftKey;
+//     var mapped    = map[event.which];
+    alert(mapped);
+//     if (!modifiers) {
       if (mapped !== undefined) {
         event.preventDefault();
         self.emit("move", mapped);
       }
 
       if (event.which === 32) self.restart.bind(self)(event);
-    }
-  });
+//     }
+  });*/
 
   var retry = document.getElementsByClassName("retry-button")[0];
   retry.addEventListener("click", this.restart.bind(this));

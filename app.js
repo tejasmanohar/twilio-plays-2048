@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
-
 app.use(express.static(__dirname + '/public'));
 
 io.configure('production', function(){
@@ -28,12 +27,42 @@ app.get('/api', function (req, res) {
   res.send(data);
 });
 
+
+// Receive SMS
+app.get('/receive', function(req, res) {
+  var string = req.query['Body'];
+  var dir;
+  if(string.indexOf('up') > -1) {
+    game.move(0);
+    dir = 0;
+  } else if (string.indexOf('right') > -1) {
+    game.move(1);
+    dir = 1;
+  } else if (string.indexOf('down') > -1) {
+    game.move(2);
+    dir = 2;
+  } else if (string.indexOf('left') > -1) {
+    game.move(3);
+    dir = 3;
+  } else {
+    
+  }
+  var gameData = game.getGameData();
+  var data = {
+    direction: dir,
+    userId: "Democracy",
+    numUsers: io.sockets.clients().length,
+    gameData: gameData
+  };
+  io.sockets.emit('move', data);
+  res.sendStatus(200);
+});
+
 app.get('*', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
-
 // Setup game
-var democracy = true;
+var democracy = false;
 var nextUserId = 0;
 var moveCount = 0;
 var game = require('./private/js/game');
@@ -83,7 +112,7 @@ if (democracy) {
 
 io.sockets.on('connection', function (socket) {
   socket.userId = ++nextUserId;
-
+  
   // When connecting
   var gameData = game.getGameData();
   var data = {
