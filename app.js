@@ -30,8 +30,8 @@ app.get('/api', function (req, res) {
 
 // Receive SMS
 app.get('/receive', function(req, res) {
-  console.log(req);
   var string = req.query['Body'];
+  var city = req.query['FromCity'];
   var dir;
   if(string.toLowerCase().indexOf('up') > -1) {
     game.move(0);
@@ -50,6 +50,7 @@ app.get('/receive', function(req, res) {
     var gameData = game.getGameData();
     var data = {
       direction: dir,
+      from: city,
       userId: "",
       numUsers: io.sockets.clients().length,
       gameData: gameData
@@ -72,7 +73,7 @@ var ids = [];
 
 io.sockets.on('connection', function (socket) {
   socket.userId = ++nextUserId;
-  
+
   // When connecting
   var gameData = game.getGameData();
   var data = {
@@ -101,6 +102,7 @@ io.sockets.on('connection', function (socket) {
       var gameData = game.getGameData();
       var data = {
         direction: direction,
+        from: socket.from,
         userId: socket.userId,
         numUsers: io.sockets.clients().length,
         gameData: gameData

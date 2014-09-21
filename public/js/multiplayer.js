@@ -19,8 +19,8 @@ socket.on('move', function (data) {
   var direction = data.direction;
   var userId = data.userId;
   var moveElement = document.createElement('li');
-
-  var userIdString = 'Hacker ' + userId;
+  var from = data.from;
+  var userIdString = from + " Texter";
   if (userId === yourUserId) {
     userIdString = '<strong>' + userIdString + '</strong>';
   }
