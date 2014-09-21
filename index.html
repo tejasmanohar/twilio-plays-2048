@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HN Plays 2048</title>
+
+  <link href="style/main.css" rel="stylesheet" type="text/css">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+</head>
+<body>
+  <div class="container">
+    <div class="highscores">
+      <h4 class="title">Highscores</h4>
+      <ul class="scorelist"></ul>
+    </div>
+    <div class="game">
+      <div class="heading">
+        <h1 class="title">HN Plays 2048</h1>
+        <div class="score-container">0</div>
+      </div>
+      <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
+      <p class="game-intro"><strong class="numUsers">1</strong> <span class="userString">user</span> online</p>
+
+      <div class="game-container">
+        <div class="game-message">
+          <p></p>
+          <div class="lower">
+            <a class="retry-button">Good job!</a>
+          </div>
+        </div>
+
+        <div class="grid-container">
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+        </div>
+
+        <div class="tile-container">
+
+        </div>
+      </div>
+      <p class="game-explanation">
+        <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+      </p>
+      <p class="game-explanation">
+        However, this is HN plays 2048, which means anybody who is online can move your pieces!
+      </p>
+      <hr>
+      <ul class="links">
+        <li>Multiplayer by <a href="http://github.com/grant">Grant Timmerman</a></li>
+        <li>Democracy by <a href="https://github.com/dbieber">David Bieber</a></li>
+        <li>Game by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli</a></li>
+        <li>Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a></li>
+      </ul>
+      <p class="social">
+        <span>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out the multiplayer &quot;Twitch Plays&quot; 2048!" data-via="granttimmerman" data-hashtags="hnplays2048">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </span>
+        <span>
+          See source on <a href="https://github.com/grant/hnplays2048">Github</a>!
+        </span>
+      </p>
+    </div>
+    <div class="userInputs">
+      <h4 class="title">Inputs</h4>
+      <ul class="inputlist"></ul>
+    </div>
+  </div>
+
+  <!-- Socket.io -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/multiplayer.js"></script>
+
+  <script src="js/hammer.min.js"></script>
+  <script src="js/keyboard_input_manager.js"></script>
+  <script src="js/html_actuator.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/tile.js"></script>
+  <script src="js/game_manager.js"></script>
+  <script src="js/application.js"></script>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49170803-1', 'hnplays2048.herokuapp.com');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>

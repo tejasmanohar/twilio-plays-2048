@@ -1,0 +1,31 @@
+{
+  "name": "hnplays2048",
+  "version": "0.0.0",
+  "description": "Multiplayer 2048!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grant/hnplays2048.git"
+  },
+  "keywords": [
+    "multiplayer",
+    "2048"
+  ],
+  "author": "Grant Timmerman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grant/hnplays2048/issues"
+  },
+  "homepage": "https://github.com/grant/hnplays2048",
+  "dependencies": {
+    "socket.io": "^0.9.16",
+    "express": "^3.5.0"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
+}
