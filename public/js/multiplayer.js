@@ -1,6 +1,5 @@
 var moveList = document.getElementsByClassName("inputlist")[0];
 var highscoreList = document.getElementsByClassName("scorelist")[0];
-var userCount = document.getElementsByClassName("numUsers")[0];
 var userString = document.getElementsByClassName("userString")[0];
 var arrows = ['▲', '▶', '▼', '◀'];
 var MOVE_LIST_CUTOFF = 20;
@@ -14,16 +13,7 @@ socket.on('connected', function (data) {
   var gameData = data.gameData;
   var highscores = data.highscores;
   setHighscores(highscores);
-  updateUserCount(data);
   manager.setGameData(gameData);
-});
-
-socket.on('someone connected', function (data) {
-  updateUserCount(data);
-});
-
-socket.on('someone disconnected', function (data) {
-  updateUserCount(data);
 });
 
 socket.on('move', function (data) {
@@ -32,7 +22,7 @@ socket.on('move', function (data) {
   var userId = data.userId;
   var moveElement = document.createElement('li');
 
-  var userIdString = 'User ' + userId;
+  var userIdString = 'Texter ' + userId;
   if (userId === yourUserId) {
     userIdString = '<strong>' + userIdString + '</strong>';
   }
@@ -46,9 +36,6 @@ socket.on('move', function (data) {
       moveList.removeChild(moveList.childNodes[i]);
     }
   }
-
-  // Update number of users
-  updateUserCount(data);
 
   // Set the game state (if we're not in a pause state)
   if (!(manager.won || manager.over)) {
@@ -83,13 +70,6 @@ function setHighscores (highscores) {
     }
     highscoreList.appendChild(hsElement);
   }
-}
-
-// Update the user count
-function updateUserCount (data) {
-  var numUsers = data.numUsers;
-  userCount.innerHTML = numUsers;
-  userString.innerHTML = numUsers === 1 ? 'user' : 'users';
 }
 
 //// Pretty date adapted from https://github.com/netcode/node-prettydate
