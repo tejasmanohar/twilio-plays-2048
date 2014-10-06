@@ -25,7 +25,6 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     if (metadata.over) self.message(false); // You lose
     if (metadata.won) self.message(true); // You win!
 
-    // HACK: Fixes glitch where the game over screen would not go away even though the game was not over
     if (self.messageContainer.classList.contains('game-over')) {
       setTimeout(function() {
         self.clearMessage();
