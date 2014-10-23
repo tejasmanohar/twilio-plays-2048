@@ -8,3 +8,8 @@ Big thanks to [@grant](https://github.com/grant)'s [HN Plays 2048](https://githu
 Roadmap
 ========
 1. Reply [html2canvas](http://html2canvas.hertzen.com/) of the latest gameboard via MMS instead of SMS "Ok"
+
+Contributors
+============
+* Tejas Manohar - [@tejasmanohar](https://github.com/tejas-manohar)
+* Cheng Wanli Peng - [@chunky123](https://github.com/chunky123)
