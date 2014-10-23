@@ -13,3 +13,6 @@ Contributors
 ============
 * Tejas Manohar - [@tejasmanohar](https://github.com/tejas-manohar)
 * Cheng Wanli Peng - [@chunky123](https://github.com/chunky123)
+* Lee Reilly - [@leereilly](https://github.com/leereilly)
+
+Make sure to add yourself as a contributor in any pull requests.
