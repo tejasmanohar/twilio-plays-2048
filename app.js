@@ -55,6 +55,13 @@ app.get('/receive', function(req, res) {
       numUsers: io.sockets.clients().length,
       gameData: gameData
     };
+    if (gameData.over || gameData.won) {
+        game.restart(function () {
+          var data = game.getGameData();
+          data.highscores = game.getHighscores();
+          io.sockets.emit('restart', data);
+        });
+    }
     io.sockets.emit('move', data);
     res.sendStatus(200);     
   }
@@ -116,7 +123,7 @@ io.sockets.on('connection', function (socket) {
           data.highscores = game.getHighscores();
           io.sockets.emit('restart', data);
         });
-    }
+      }
   });
 
   socket.on('disconnect', function () {
