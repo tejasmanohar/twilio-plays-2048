@@ -7,5 +7,4 @@ Big thanks to [@grant](https://github.com/grant)'s [HN Plays 2048](https://githu
 
 Roadmap
 ========
-1. Store most recent gameboard, inputs, and highscores in [Firebase](https://www.firebase.com/)
-2. Reply [html2canvas](http://html2canvas.hertzen.com/) of the latest gameboard via MMS instead of SMS "Ok"
+1. Reply [html2canvas](http://html2canvas.hertzen.com/) of the latest gameboard via MMS instead of SMS "Ok"
