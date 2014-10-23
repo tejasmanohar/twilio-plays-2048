@@ -28,7 +28,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     if (self.messageContainer.classList.contains('game-over')) {
       setTimeout(function() {
         self.clearMessage();
-      }, 5000);
+      }, 10000);
     }
   });
 };

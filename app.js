@@ -18,16 +18,6 @@ server.listen(port);
 console.log("Listening at port: " + port);
 
 // Routes
-app.get('/api', function (req, res) {
-  var data = game.getGameData();
-  data.highscores = game.getScores();
-  data.moveCount = moveCount;
-  data.numUsers = io.sockets.clients().length; // Online users
-  data.totalNumUsers = nextUserId; // Visitor count
-  res.send(data);
-});
-
-
 // Receive SMS
 app.get('/receive', function(req, res) {
   var string = req.query['Body'];
@@ -70,6 +60,7 @@ app.get('/receive', function(req, res) {
 app.get('*', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
+
 // Setup game
 var nextUserId = 0;
 var moveCount = 0;
