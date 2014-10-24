@@ -15,4 +15,4 @@ Contributors
 * __Cheng Wanli Peng - [@chunky123](https://github.com/chunky123)__
 * Lee Reilly - [@leereilly](https://github.com/leereilly)
 
-Make sure to add yourself as a contributor in any pull requests.
+Make sure to add yourself as a contributor (__bold__ only for founding devs) in any pull requests.
