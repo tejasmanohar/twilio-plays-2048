@@ -8,8 +8,8 @@ Big thanks to [@grant](https://github.com/grant)'s [HN Plays 2048](https://githu
 
 In the News
 ===========
-*[TechCrunch](http://techcrunch.com/2014/10/23/twilio-project-turns-2048-into-a-multiplayer-game-that-you-play-by-text/)
-*[Twilio](https://www.twilio.com/blog/2014/12/12-hacks-of-christmas-day-6-twilio-plays-2048.html)
+*   [TechCrunch](http://techcrunch.com/2014/10/23/twilio-project-turns-2048-into-a-multiplayer-game-that-you-play-by-text/)
+*   [Twilio](https://www.twilio.com/blog/2014/12/12-hacks-of-christmas-day-6-twilio-plays-2048.html)
 
 Contributors
 ============
