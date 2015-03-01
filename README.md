@@ -1,6 +1,6 @@
 ## Overview
 
-Twilio knockoff of Twitch Plays Pokemon with 2048
+Twilio knockoff of Twitch Plays Pokemon with 2048. Multiplayer w/o Internet (over SMS).
 
 
 ## In the news
